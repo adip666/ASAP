@@ -14,7 +14,7 @@ namespace GameManager
         private List<IASAPInteractableObjects> interactableObjects;
 
         private int modeMaxTime = 5;
-        private float currentModeTime;
+        private float currentModeTime = 0;
         private bool isTimeMode;
         [Inject]
         private void Inject(ISignalSystem signalSystem, List<IASAPInteractableObjects> interactableObjects)
@@ -59,21 +59,25 @@ namespace GameManager
                 interactable.FixedTick();
             }
 
+          
+          
+        }
+
+        private void Update()
+        {
             if (isTimeMode)
             {
-                currentModeTime += Time.fixedTime;
+                currentModeTime += Time.deltaTime;
                 if (currentModeTime > modeMaxTime)
                 {
                     DisableTimeMode();
                 }
                 
             }
-          
         }
 
         private void DisableTimeMode()
         {
-           
             isTimeMode = false;
             currentModeTime = 0;
             
@@ -81,6 +85,7 @@ namespace GameManager
             {
                 interactable.ChangeMovementSpeed(1);
             }
+            signalSystem.FireSignal<OnASAPModeDisabledSignal>();
         }
         
         

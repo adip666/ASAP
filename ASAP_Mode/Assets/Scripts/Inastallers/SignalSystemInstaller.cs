@@ -16,6 +16,7 @@ namespace ASAP.Installers
         private void BindSignals()
         {
             Container.DeclareSignal<OnASAPModeEnabledSignal>();
+            Container.DeclareSignal<OnASAPModeDisabledSignal>();
         }
     }
 }

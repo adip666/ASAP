@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\ASAPInteractions\IASAPInteractableObjects.cs" />
      <Compile Include="Assets\Scripts\ASAPInteractions\Enemy.cs" />
      <Compile Include="Assets\Scripts\SignalSystem\Signals\OnASAPModeDisabledSignal.cs" />
+     <Compile Include="Assets\Scripts\UI\GameView.cs" />
      <Reference Include="UnityEngine">
      <HintPath>D:\2021.3.6f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>

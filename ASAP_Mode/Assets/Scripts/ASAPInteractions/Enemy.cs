@@ -6,12 +6,10 @@ namespace ASAPInteractions
     {
         public void FixedTick()
         {
-            throw new System.NotImplementedException();
         }
 
         public void ChangeMovementSpeed(float speed)
         {
-            throw new System.NotImplementedException();
         }
     }
 }
