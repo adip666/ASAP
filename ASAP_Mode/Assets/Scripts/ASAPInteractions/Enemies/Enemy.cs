@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using ASAP.Settings;
 using UnityEngine;
+using Zenject.SpaceFighter;
 
 namespace ASAPInteractions
 {
@@ -8,11 +10,11 @@ namespace ASAPInteractions
         private Vector3 currentDirection;
         private float speed;
 
-        [SerializeField] private float startSpeed = 1;
+        [SerializeField] private EnemySettings settings;
       
         public void Initialize()
         {
-            speed = startSpeed;
+            speed = settings.NormalSpeed;
             currentDirection = DrawDirection(currentDirection);
         }
         public void FixedTick()
@@ -27,7 +29,7 @@ namespace ASAPInteractions
 
         public void ResetSpeed()
         {
-            speed = startSpeed;
+            speed = settings.NormalSpeed;
         }
 
         private void OnCollisionEnter(Collision other)

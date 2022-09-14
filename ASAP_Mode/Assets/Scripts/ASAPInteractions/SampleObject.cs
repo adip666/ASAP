@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ASAP.Settings;
+using UnityEngine;
 
 namespace ASAPInteractions
 {
@@ -6,12 +7,12 @@ namespace ASAPInteractions
     {
         
         [SerializeField] private Rigidbody rigidbody;
-        [SerializeField] private float startSpeed = 1;
+        [SerializeField] InteractableObjectSettings settings;
         private float speed;
 
         public void Initialize()
         {
-            speed = startSpeed;
+            speed = settings.NormalSpeed;
         }
 
         public void ChangeMovementSpeed(float speed)
@@ -21,7 +22,7 @@ namespace ASAPInteractions
 
         public void ResetSpeed()
         {
-            speed = startSpeed;
+            speed = settings.NormalSpeed;;
         }
 
         public void FixedTick()

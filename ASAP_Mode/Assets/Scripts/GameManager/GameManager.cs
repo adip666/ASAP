@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using ASAP.Settings;
 using ASAP.SignalsSystem;
 using ASAP.Signals;
 using ASAPInteractions;
@@ -10,11 +10,11 @@ namespace GameManager
 {
     public class GameManager : MonoBehaviour
     {
-        [SerializeField]private float asapModeSpeed = .8f;
-        
+        [SerializeField] private GameSettings settings;
+     
         private ISignalSystem signalSystem;
         private List<IASAPInteractableObjects> interactableObjects;
-        private int modeMaxTime = 5;
+       
         private float currentModeTime = 0f;
         private bool isTimeMode;
        
@@ -57,7 +57,7 @@ namespace GameManager
             
             foreach (var interactable in interactableObjects)
             {
-                interactable.ChangeMovementSpeed(asapModeSpeed);
+                interactable.ChangeMovementSpeed(settings.AsapModeSpeed);
             }
             
             isTimeMode = true;
@@ -77,7 +77,7 @@ namespace GameManager
             if (isTimeMode)
             {
                 currentModeTime += Time.deltaTime;
-                if (currentModeTime > modeMaxTime)
+                if (currentModeTime > settings.AsapModeMaxTime)
                 {
                     DisableTimeMode();
                 }
