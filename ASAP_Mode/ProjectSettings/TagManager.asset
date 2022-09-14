@@ -5,8 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - CinemachineTarget
-  - ship
-  - asteroid
+  - Wall
+  - Enemy
   layers:
   - Default
   - TransparentFX

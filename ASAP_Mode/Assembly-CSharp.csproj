@@ -53,7 +53,7 @@
      <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
      <Compile Include="Assets\Scripts\ASAPInteractions\SampleObject.cs" />
      <Compile Include="Assets\Scripts\ASAPInteractions\IASAPInteractableObjects.cs" />
-     <Compile Include="Assets\Scripts\ASAPInteractions\Enemy.cs" />
+     <Compile Include="Assets\Scripts\ASAPInteractions\Enemies\Enemy.cs" />
      <Compile Include="Assets\Scripts\SignalSystem\Signals\OnASAPModeDisabledSignal.cs" />
      <Compile Include="Assets\Scripts\UI\GameView.cs" />
      <Reference Include="UnityEngine">

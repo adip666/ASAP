@@ -10,12 +10,14 @@ namespace GameManager
 {
     public class GameManager : MonoBehaviour
     {
+        [SerializeField]private float asapModeSpeed = .8f;
+        
         private ISignalSystem signalSystem;
         private List<IASAPInteractableObjects> interactableObjects;
-
         private int modeMaxTime = 5;
-        private float currentModeTime = 0;
+        private float currentModeTime = 0f;
         private bool isTimeMode;
+       
         [Inject]
         private void Inject(ISignalSystem signalSystem, List<IASAPInteractableObjects> interactableObjects)
         {
@@ -25,28 +27,37 @@ namespace GameManager
         private void Start()
         {
             SubscribeSignals();
+            InitializeObjects();
         }
 
+        private void InitializeObjects()
+        {
+            foreach (var interactable in interactableObjects)
+            {
+                interactable.Initialize();
+            }
+        }
+        
         private void SubscribeSignals()
         {
             signalSystem.SubscribeSignal<OnASAPModeEnabledSignal>(OnASAPModeEnabled);
         }
         
-        private void UnSubscribeSignals()
+        private void UnsubscribeSignals()
         {
             signalSystem.UnsubscribeSignal<OnASAPModeEnabledSignal>(OnASAPModeEnabled);
         }
 
-        private void OnDestroy()
-        {
-            UnSubscribeSignals();
-        }
+       
 
         private void OnASAPModeEnabled()
         {
+            if(isTimeMode)
+                return;;
+            
             foreach (var interactable in interactableObjects)
             {
-                interactable.ChangeMovementSpeed(.8f);
+                interactable.ChangeMovementSpeed(asapModeSpeed);
             }
             
             isTimeMode = true;
@@ -58,9 +69,7 @@ namespace GameManager
             {
                 interactable.FixedTick();
             }
-
-          
-          
+            
         }
 
         private void Update()
@@ -83,9 +92,14 @@ namespace GameManager
             
             foreach (var interactable in interactableObjects)
             {
-                interactable.ChangeMovementSpeed(1);
+                interactable.ResetSpeed();
             }
             signalSystem.FireSignal<OnASAPModeDisabledSignal>();
+        }
+        
+        private void OnDestroy()
+        {
+            UnsubscribeSignals();
         }
         
         

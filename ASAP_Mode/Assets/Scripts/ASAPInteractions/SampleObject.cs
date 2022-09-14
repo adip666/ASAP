@@ -4,12 +4,24 @@ namespace ASAPInteractions
 {
     public class SampleObject : MonoBehaviour, IASAPInteractableObjects
     {
-        private float speed = 1;
+        
         [SerializeField] private Rigidbody rigidbody;
+        [SerializeField] private float startSpeed = 1;
+        private float speed;
+
+        public void Initialize()
+        {
+            speed = startSpeed;
+        }
 
         public void ChangeMovementSpeed(float speed)
         {
             this.speed = speed;
+        }
+
+        public void ResetSpeed()
+        {
+            speed = startSpeed;
         }
 
         public void FixedTick()
@@ -17,11 +29,6 @@ namespace ASAPInteractions
             rigidbody.velocity *= speed;
             rigidbody.angularVelocity *= speed;
         }
-
-        [ContextMenu("ResetSpeed")]
-        void ResetSpeed()
-        {
-            speed = 1;
-        }
+        
     }
 }
